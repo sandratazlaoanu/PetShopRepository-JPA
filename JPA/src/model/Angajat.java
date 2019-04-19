@@ -26,7 +26,7 @@ public class Angajat implements Serializable {
 
 	//bi-directional many-to-one association to PetShop
 	@ManyToOne
-	@JoinColumn(name="idpetshop")
+	@JoinColumn(name="idPetShop")
 	private PetShop petShop;
 
 	//bi-directional many-to-one association to AngajatDepartament

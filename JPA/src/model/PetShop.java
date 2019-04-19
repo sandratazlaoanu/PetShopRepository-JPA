@@ -4,13 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the petshop database table.
  * 
  */
 @Entity
-@NamedQuery(name="Petshop.findAll", query="SELECT p FROM PetShop p")
+@NamedQuery(name="PetShop.findAll", query="SELECT p FROM PetShop p")
 public class PetShop implements Serializable {
 	private static final long serialVersionUID = 1L;
 

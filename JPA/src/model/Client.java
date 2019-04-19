@@ -1,3 +1,4 @@
+    
 package model;
 
 import java.io.Serializable;
@@ -21,11 +22,11 @@ public class Client implements Serializable {
 
 	private String prenume;
 
-	// bi-directional many-to-one association to Bonfiscal
+	// bi-directional many-to-one association to BonFiscal
 	@OneToMany(mappedBy = "client")
 	private List<BonFiscal> bonFiscals;
 
-	// bi-directional many-to-one association to Petshop
+	// bi-directional many-to-one association to PetShop
 	@ManyToOne
 	@JoinColumn(name = "idPetShopClient")
 	private PetShop petShop;
