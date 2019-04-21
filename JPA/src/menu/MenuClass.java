@@ -6,30 +6,24 @@ import java.io.InputStreamReader;
 import java.sql.Date;
 import java.sql.SQLException;
 
-import controller.AngajatController;
-import controller.AngajatDepartamentController;
+import controller.AdresaController;
 import controller.BonFiscalController;
 import controller.ClientController;
-import controller.DepartamentController;
-import controller.PetShopController;
 
 public class MenuClass {
 
 	public void menu() throws NumberFormatException, IOException, SQLException {
 
-		AngajatController angajatController = new AngajatController();
-		AngajatDepartamentController adController = new AngajatDepartamentController();
+		AdresaController adresaController = new AdresaController();
 		BonFiscalController bfController = new BonFiscalController();
 		ClientController clientController = new ClientController();
-		DepartamentController departamentController = new DepartamentController();
-		PetShopController controller = new PetShopController();
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 		while (true) {
 
 			System.out.println("---Optiuni principale---");
-			System.out.println("1. CRUD angajat.");
+			System.out.println("1. CRUD adresa.");
 			System.out.println("2. CRUD client.");
 			System.out.println("3. CRUD bon fiscal.");
 			System.out.println("4. Exemple JOIN.");
@@ -45,60 +39,50 @@ public class MenuClass {
 				System.out.println("1.Add.");
 				System.out.println("2.Update.");
 				System.out.println("3.Delete.");
-				int optAngajat = Integer.parseInt(reader.readLine());
-				switch (optAngajat) {
+				System.out.println("4.Print.");
+
+				int optAdresa = Integer.parseInt(reader.readLine());
+				switch (optAdresa) {
 
 				case 0:
 					break;
 				case 1:
-					System.out.println("Id: ");
-					int idAngajat = Integer.parseInt(reader.readLine());
-					System.out.println("Nume: ");
-					String numeAngajat = reader.readLine();
-					System.out.println("Prenume: ");
-					String prenumeAngajat = reader.readLine();
-					System.out.println("Pet Shop: ");
-					int idPetShopAngajat = Integer.parseInt(reader.readLine());
-					System.out.println("Salariu: ");
-					Float salariuAngajat = Float.parseFloat(reader.readLine());
-					angajatController.create(idAngajat, numeAngajat, prenumeAngajat, salariuAngajat, idPetShopAngajat);
-
-					System.out.println("Doriti sa setati si un departament? ");
-					String chooseDepartament = reader.readLine();
-					switch (chooseDepartament) {
-
-					case "Nu":
-						break;
-					case "Da":
-						System.out.println("Id departament: ");
-						int idDepartament = Integer.parseInt(reader.readLine());
-						System.out.println("Denumire: ");
-						String denumire = reader.readLine();
-						System.out.println("Numar raioane alocate: ");
-						int numarRaioane = Integer.parseInt(reader.readLine());
-						departamentController.create(idDepartament, denumire, numarRaioane);
-						break;
-					}
+					System.out.println("Zip: ");
+					int zip = Integer.parseInt(reader.readLine());
+					System.out.println("Judet: ");
+					String judet = reader.readLine();
+					System.out.println("Oras: ");
+					String oras = reader.readLine();
+					System.out.println("Strada: ");
+					String strada = reader.readLine();
+					System.out.println("Numar: ");
+					int numar = Integer.parseInt(reader.readLine());
+					adresaController.create(zip, judet, oras, strada, numar);
 					break;
 				case 2:
 					System.out.println("Datele: ");
-					System.out.println("Id: ");
-					int idAngajatToUpdate = Integer.parseInt(reader.readLine());
-					System.out.println("Nume: ");
-					String numeNouAngajat = reader.readLine();
-					System.out.println("Prenume: ");
-					String prenumeNouAngajat = reader.readLine();
-					System.out.println("Salariu: ");
-					Float salariuNouAngajat = Float.parseFloat(reader.readLine());
-					angajatController.update(idAngajatToUpdate, numeNouAngajat, prenumeNouAngajat, salariuNouAngajat);
+
+					System.out.println("Zip: ");
+					int zipToUpdate = Integer.parseInt(reader.readLine());
+					System.out.println("Judet: ");
+					String judetToUpdate = reader.readLine();
+					System.out.println("Oras: ");
+					String orasToUpdate = reader.readLine();
+					System.out.println("Strada: ");
+					String stradaToUpdate = reader.readLine();
+					System.out.println("Numar: ");
+					int numarToUpdate = Integer.parseInt(reader.readLine());
+					adresaController.update(zipToUpdate, judetToUpdate, orasToUpdate, stradaToUpdate, numarToUpdate);
 					break;
 
 				case 3:
 					System.out.println("Datele: ");
 					System.out.println("Id: ");
-					int idAngajatToDelete = Integer.parseInt(reader.readLine());
-					angajatController.delete(idAngajatToDelete);
+					int zipToDelete = Integer.parseInt(reader.readLine());
+					adresaController.delete(zipToDelete);
 					break;
+				case 4:
+					adresaController.printList();
 				}
 
 				break;
@@ -107,6 +91,7 @@ public class MenuClass {
 				System.out.println("1.Add.");
 				System.out.println("2.Update.");
 				System.out.println("3.Delete.");
+				System.out.println("4.Print.");
 				int optClient = Integer.parseInt(reader.readLine());
 				switch (optClient) {
 
@@ -158,6 +143,9 @@ public class MenuClass {
 					int idClientToDelete = Integer.parseInt(reader.readLine());
 					clientController.delete(idClientToDelete);
 					break;
+
+				case 4:
+					clientController.printList();
 				}
 
 				break;
@@ -166,6 +154,8 @@ public class MenuClass {
 				System.out.println("1.Add.");
 				System.out.println("2.Update.");
 				System.out.println("3.Delete.");
+				System.out.println("4.Print.");
+
 				int optBonFiscal = Integer.parseInt(reader.readLine());
 				switch (optBonFiscal) {
 
@@ -199,10 +189,12 @@ public class MenuClass {
 					int idBonFiscalToDelete = Integer.parseInt(reader.readLine());
 					bfController.delete(idBonFiscalToDelete);
 					break;
+				case 4:
+					bfController.printList();
 				}
 				break;
 			}
 		}
-		
+
 	}
 }
